@@ -7,6 +7,11 @@
  * places to add some flare.
  */
 
+/* Pour imiter le background de TDV */
+ .dark-mode {
+  --bg-color: #121321;
+ }
+
 .notion {
   --notion-max-width: 720px;
   --notion-header-height: 54px;
