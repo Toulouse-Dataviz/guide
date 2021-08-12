@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord } from 'react-icons/fa'
 import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
 import * as config from 'lib/config'
 
@@ -35,7 +35,7 @@ export const Footer: React.FC<{
             onClick={toggleDarkModeCb}
             title='Tottle dark mode'
           >
-            {isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
+            {!isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
           </a>
         </div>
       ) : null}
@@ -74,6 +74,29 @@ export const Footer: React.FC<{
             rel='noopener noreferrer'
           >
             <FaLinkedin />
+          </a>
+        )}
+
+        {config.youtube && (
+          <a
+            className={styles.youtube}
+            href={`https://www.youtube.com/${config.youtube}`}
+            title={`Youtube ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaYoutube />
+          </a>
+        )}
+        {config.discord && (
+          <a
+            className={styles.discord}
+            href={`https://www.discord.com/${config.discord}`}
+            title={`Discord ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaDiscord />
           </a>
         )}
       </div>

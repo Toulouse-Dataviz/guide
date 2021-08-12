@@ -11,10 +11,10 @@ module.exports = {
   // basic site info (required)
   name: 'Les ressources de Toulouse Dataviz',
   domain: 'toulouse-dataviz.fr',
-  author: 'Toulouse Dataviz (réalisation Alain Roan)',
+  author: 'Toulouse DataViz (Alain Roan) à partir de transitivebullsh.it',
 
   // open graph metadata (optional)
-  description: "Description des ressources de Toulouse Datviz",
+  description: "Description des ressources de Toulouse DataViz",
   socialImageTitle: 'toulouse-dataviz.fr',
   socialImageSubtitle: 'Voir les données et les donner à voir',
 
@@ -22,8 +22,10 @@ module.exports = {
   
   twitter: 'Tls_dataviz',
   github: 'ToulouseDataViz',
-  linkedin: '',
-
+  linkedin: null,
+  discord: 'Tdv',
+  youtube: 'channel/UCo64gnxLZs1xIN-Y0Bv_Hpg/featured'
+,
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
   defaultPageIcon: null,
@@ -50,5 +52,7 @@ module.exports = {
   //   '/foo': '067dd719a912471ea9a3ac10710e7fdf',
   //   '/bar': '0be6efce9daf42688f65c76b89f8eb27'
   // }
-  pageUrlOverrides: null
+  pageUrlOverrides: {
+    '/newsletters': 'e239c954d9a04780843e173559717360'
+  }
 }
