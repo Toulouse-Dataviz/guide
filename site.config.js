@@ -1,7 +1,8 @@
 module.exports = {
   // where it all starts -- the site's root Notion page (required)
   //rootNotionPageId: '872d07bf660b4e28b403b8a9d5bd179e', // espace pobox
-  rootNotionPageId: 'Nextjs-Notion-Test-ec4e155f14cf4e1ebf236af700c6bfe7', // newsletters TDV
+  //rootNotionPageId: 'Nextjs-Notion-Test-ec4e155f14cf4e1ebf236af700c6bfe7', // newsletters TDV hébergées chez Alain
+  rootNotionPageId: 'Les-ressources-de-ToulouseDataViz-061ce66f47784394a664e0c9b758ea04', // newsletters TDV bébergées chez TDV
   //rootNotionPageId: 'https://alainroan.notion.site/Collections-3956c20e5b944d1facb1a50f769ea63d', // Collections
 
   // if you want to restrict pages to a single notion workspace (optional)
