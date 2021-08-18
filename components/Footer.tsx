@@ -69,7 +69,7 @@ export const Footer: React.FC<{
           <a
             className={styles.linkedin}
             href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.author}`}
+            title={`LinkedIn ${config.linkedin}`}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -81,7 +81,7 @@ export const Footer: React.FC<{
           <a
             className={styles.youtube}
             href={`https://www.youtube.com/${config.youtube}`}
-            title={`Youtube ${config.author}`}
+            title={`Youtube ${config.youtube}`}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -91,8 +91,8 @@ export const Footer: React.FC<{
         {config.discord && (
           <a
             className={styles.discord}
-            href={`https://www.discord.com/${config.discord}`}
-            title={`Discord ${config.author}`}
+            href={`${config.discord}`}
+            title={`Discord ${config.discord}`}
             target='_blank'
             rel='noopener noreferrer'
           >

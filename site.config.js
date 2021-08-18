@@ -11,7 +11,7 @@ module.exports = {
 
   // basic site info (required)
   name: 'Les ressources de Toulouse Dataviz',
-  domain: 'toulouse-dataviz.fr',
+  domain: 'ressources.toulouse-dataviz.fr',
   author: 'Toulouse DataViz (Alain Roan) à partir de transitivebullsh.it',
 
   // open graph metadata (optional)
@@ -24,7 +24,7 @@ module.exports = {
   twitter: 'Tls_dataviz',
   github: 'ToulouseDataViz',
   linkedin: null,
-  discord: 'Tdv',
+  discord: 'https://discord.gg/RbTR4jKRp9',
   youtube: 'channel/UCo64gnxLZs1xIN-Y0Bv_Hpg/featured'
 ,
   // default notion icon and cover images for site-wide consistency (optional)
