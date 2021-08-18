@@ -11,7 +11,7 @@ module.exports = {
 
   // basic site info (required)
   name: 'Les ressources de Toulouse Dataviz',
-  domain: 'ressources.toulouse-dataviz.fr',
+  domain: 'notion2site.vercel.app',
   author: 'Toulouse DataViz (Alain Roan) à partir de transitivebullsh.it',
 
   // open graph metadata (optional)
