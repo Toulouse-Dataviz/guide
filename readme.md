@@ -5,6 +5,7 @@
 </p>
 
 https://notion2site.vercel.app/
+Les pages behance de Adobe nécessitent un rebuild complet...
 
 # Next.js Notion Starter Kit
 
