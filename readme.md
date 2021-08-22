@@ -8,6 +8,7 @@ https://notion2site.vercel.app/
 Les pages behance de Adobe nécessitent un rebuild complet...
 Et semble-t-il parfois des modifications de colonnes. A creuser.
 Et la mise à jour n'est pas toujours automatique. A VRAIMENT creuser. Vraiment ? 
+C'est dur de continuer .
 
 # Next.js Notion Starter Kit
 
