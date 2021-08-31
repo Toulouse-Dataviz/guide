@@ -25,7 +25,8 @@ module.exports = {
   github: 'ToulouseDataViz',
   linkedin: null,
   discord: 'https://discord.gg/RbTR4jKRp9',
-  youtube: 'channel/UCo64gnxLZs1xIN-Y0Bv_Hpg/featured'
+  youtube: 'channel/UCo64gnxLZs1xIN-Y0Bv_Hpg/featured',
+  meetup: 'https://www.meetup.com/fr-FR/Meetup-Visualisation-des-donnees-Toulouse/'
 ,
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults

@@ -48,6 +48,7 @@ export const github: string | null = getSiteConfig('github', null)
 export const linkedin: string | null = getSiteConfig('linkedin', null)
 export const youtube: string | null = getSiteConfig('youtube', null)
 export const discord: string | null = getSiteConfig('discord', null)
+export const meetup: string | null = getSiteConfig('meetup', null)
 
 export const socialImageTitle: string | null = getSiteConfig(
   'socialImageTitle',

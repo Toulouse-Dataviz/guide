@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord } from 'react-icons/fa'
+import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaMeetup } from 'react-icons/fa'
 import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
 import * as config from 'lib/config'
 
@@ -88,6 +88,7 @@ export const Footer: React.FC<{
             <FaYoutube />
           </a>
         )}
+
         {config.discord && (
           <a
             className={styles.discord}
@@ -99,6 +100,19 @@ export const Footer: React.FC<{
             <FaDiscord />
           </a>
         )}
+
+        {config.meetup && (
+          <a
+            className={styles.meetup}
+            href={`${config.meetup}`}
+            title={`Meetup ${config.meetup}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaMeetup />
+          </a>
+        )}
+        
       </div>
     </footer>
   )
