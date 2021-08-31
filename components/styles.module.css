@@ -109,6 +109,14 @@
   color: #0077b5;
 }
 
+.meetup:hover {
+  color: #0077b5;
+}
+
+.mail:hover {
+  color: #0077b5;
+}
+
 .comments {
   width: 100%;
   margin-top: 2em;

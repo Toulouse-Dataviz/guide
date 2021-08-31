@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaMeetup } from 'react-icons/fa'
+import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaMeetup, FaEnvelope } from 'react-icons/fa'
 import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
 import * as config from 'lib/config'
 
@@ -112,7 +112,19 @@ export const Footer: React.FC<{
             <FaMeetup />
           </a>
         )}
-        
+
+        {config.mail && (
+          <a
+            className={styles.mail}
+            href={`${config.mail}`}
+            title={`Mail ${config.mail}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaEnvelope />
+          </a>
+        )}
+
       </div>
     </footer>
   )
