@@ -1,18 +1,25 @@
 import * as React from 'react'
-import { FaTwitter, FaGithub, FaLinkedin, FaYoutube, FaDiscord, FaMeetup, FaEnvelope } from 'react-icons/fa'
-import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
+import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
+import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
+import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
+import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
+import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
+import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
+
+import { useDarkMode } from 'lib/use-dark-mode'
 import * as config from 'lib/config'
 
 import styles from './styles.module.css'
 
 // TODO: merge the data and icons from PageSocial with the social links in Footer
 
-export const Footer: React.FC<{
-  isDarkMode: boolean
-  toggleDarkMode: () => void
-}> = ({ isDarkMode, toggleDarkMode }) => {
+export const FooterImpl: React.FC = () => {
   const [hasMounted, setHasMounted] = React.useState(false)
-  const toggleDarkModeCb = React.useCallback(
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
+
+  const onToggleDarkMode = React.useCallback(
     (e) => {
       e.preventDefault()
       toggleDarkMode()
@@ -26,19 +33,21 @@ export const Footer: React.FC<{
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>2022 {config.author}</div>
+      <div className={styles.copyright}>Copyright 2022 {config.author}</div>
 
-      {hasMounted ? (
-        <div className={styles.settings}>
+      <div className={styles.settings}>
+        {hasMounted && (
           <a
             className={styles.toggleDarkMode}
-            onClick={toggleDarkModeCb}
-            title='Toggle dark/light mode'
+            href='#'
+            role='button'
+            onClick={onToggleDarkMode}
+            title='Toggle dark mode'
           >
-            {!isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
+            {isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
           </a>
-        </div>
-      ) : null}
+        )}
+      </div>
 
       <div className={styles.social}>
         {config.twitter && (
@@ -50,6 +59,18 @@ export const Footer: React.FC<{
             rel='noopener noreferrer'
           >
             <FaTwitter />
+          </a>
+        )}
+
+        {config.zhihu && (
+          <a
+            className={styles.zhihu}
+            href={`https://zhihu.com/people/${config.zhihu}`}
+            title={`Zhihu @${config.zhihu}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaZhihu />
           </a>
         )}
 
@@ -69,7 +90,7 @@ export const Footer: React.FC<{
           <a
             className={styles.linkedin}
             href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.linkedin}`}
+            title={`LinkedIn ${config.author}`}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -77,55 +98,32 @@ export const Footer: React.FC<{
           </a>
         )}
 
+        {config.newsletter && (
+          <a
+            className={styles.newsletter}
+            href={`${config.newsletter}`}
+            title={`Newsletter ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaEnvelopeOpenText />
+          </a>
+        )}
+
         {config.youtube && (
           <a
             className={styles.youtube}
             href={`https://www.youtube.com/${config.youtube}`}
-            title={`Youtube ${config.youtube}`}
+            title={`YouTube ${config.author}`}
             target='_blank'
             rel='noopener noreferrer'
           >
             <FaYoutube />
           </a>
         )}
-
-        {config.discord && (
-          <a
-            className={styles.discord}
-            href={`${config.discord}`}
-            title={`Discord ${config.discord}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaDiscord />
-          </a>
-        )}
-
-        {config.meetup && (
-          <a
-            className={styles.meetup}
-            href={`${config.meetup}`}
-            title={`Meetup ${config.meetup}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaMeetup />
-          </a>
-        )}
-
-        {config.mail && (
-          <a
-            className={styles.mail}
-            href={`${config.mail}`}
-            title={`Mail ${config.mail}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaEnvelope />
-          </a>
-        )}
-
       </div>
     </footer>
   )
 }
+
+export const Footer = React.memo(FooterImpl)

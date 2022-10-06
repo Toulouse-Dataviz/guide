@@ -3,7 +3,7 @@ import * as config from './config'
 
 export let db: firestore.Firestore = null
 export let images: firestore.CollectionReference = null
-
+/*
 if (config.isPreviewImageSupportEnabled) {
   db = new firestore.Firestore({
     projectId: config.googleProjectId,
@@ -12,3 +12,4 @@ if (config.isPreviewImageSupportEnabled) {
 
   images = db.collection(config.firebaseCollectionImages)
 }
+*/
