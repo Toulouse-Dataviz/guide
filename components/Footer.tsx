@@ -1,15 +1,18 @@
 import * as React from 'react'
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
-import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
+
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope'
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
 import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
-import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
-import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
+import { FaDiscord } from '@react-icons/all-files/fa/faDiscord'
+import { FaMeetup } from '@react-icons/all-files/fa/FaMeetup'
+import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
+import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
 
-import { useDarkMode } from 'lib/use-dark-mode'
-import * as config from 'lib/config'
+import * as config from '@/lib/config'
+import { useDarkMode } from '@/lib/use-dark-mode'
 
 import styles from './styles.module.css'
 
@@ -33,7 +36,7 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright 2022 {config.author}</div>
+      <div className={styles.copyright}>Copyright 2022 {config.copyright}</div>
 
       <div className={styles.settings}>
         {hasMounted && (
@@ -106,7 +109,7 @@ export const FooterImpl: React.FC = () => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaEnvelopeOpenText />
+            <FaEnvelope />
           </a>
         )}
 
@@ -119,6 +122,42 @@ export const FooterImpl: React.FC = () => {
             rel='noopener noreferrer'
           >
             <FaYoutube />
+          </a>
+        )}
+
+        {config.discord && (
+          <a
+            className={styles.discord}
+            href={`${config.discord}`}
+            title={`Discord ${config.discord}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaDiscord />
+          </a>
+        )}
+
+        {config.meetup && (
+          <a
+            className={styles.meetup}
+            href={`${config.meetup}`}
+            title={`Meetup ${config.meetup}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaMeetup />
+          </a>
+        )}
+
+        {config.mail && (
+          <a
+            className={styles.mail}
+            href={`${config.mail}`}
+            title={`Mail ${config.mail}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaEnvelope />
           </a>
         )}
       </div>
