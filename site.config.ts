@@ -4,20 +4,22 @@ export default siteConfig({
   // the site's root Notion page (required)
   //rootNotionPageId: '7875426197cf461698809def95960ebf',
   //rootNotionPageId: 'percep/ba623f2cbde54e888d88a9fc50016f21?v=b2af88821e6d47eeba7a827ff65573c6',
-  rootNotionPageId: 'toulouse-dataviz/Les-ressources-de-Toulouse-DataViz-061ce66f47784394a664e0c9b758ea04',
+  rootNotionPageId:
+    'toulouse-dataviz/fd09a97c7ebc4674a09a2786939eb906?v=9882b27e7a474ea9907cee9dd062a13f&pvs=4',
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'Les ressources de Toulouse Dataviz',
+  name: 'Guidelines PF de Toulouse DataViz',
   domain: 'notion2site.vercel.app',
   author: 'TDV',
-  copyright: 'Toulouse DataViz (Alain Roan) à partir de transitivebullsh.it',
+  copyright:
+    'Toulouse DataViz (A. Roan et V. Vivanloc) à partir de transitivebullsh.it',
 
   // open graph metadata (optional)
-  description: "Description des ressources de Toulouse DataViz",
+  description: 'Guidelines PF de Toulouse DataViz',
 
   // social usernames (optional)
   twitter: 'Tls_dataviz',
@@ -27,7 +29,8 @@ export default siteConfig({
   // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
   discord: 'https://discord.gg/RbTR4jKRp9',
   youtube: 'channel/UCo64gnxLZs1xIN-Y0Bv_Hpg/featured',
-  meetup: 'https://www.meetup.com/fr-FR/Meetup-Visualisation-des-donnees-Toulouse/',
+  meetup:
+    'https://www.meetup.com/fr-FR/Meetup-Visualisation-des-donnees-Toulouse/',
   mail: 'mailto://contact@toulouse-dataviz.fr',
 
   // default notion icon and cover images for site-wide consistency (optional)

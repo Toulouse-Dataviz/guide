@@ -1,5 +1,5 @@
 /**
- * This file contains site-specifc style overrides for Notion elements from
+ * This file contains site-specific style overrides for Notion elements from
  * react-notion-x.
  *
  * react-notion-x's goal is to match styling as close as possible to Notion,
@@ -7,11 +7,11 @@
  * places to add some flare.
  */
 
- /* Pour imiter le background de TDV */
- .dark-mode {
+/* Pour imiter le background de TDV */
+.dark-mode {
   --bg-color: #121321;
- }
- 
+}
+
 .notion {
   --notion-max-width: 720px;
   --notion-header-height: 54px;
@@ -64,7 +64,7 @@
 }
 
 .notion-gallery-grid .notion-page-title-text {
-  font-size: 2em;
+  font-size: 1em;
   white-space: unset;
 }
 
@@ -78,12 +78,12 @@
 }
 
 .notion-collection-card {
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: none;
 }
 
 .notion-collection-card-cover img {
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .notion-collection-card {
@@ -91,7 +91,7 @@
 }
 
 .notion-collection-card-cover {
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
 }
 
@@ -386,4 +386,23 @@
 
 .notion-block-260baa77f1e1428b97fb14ac99c7c385 {
   display: none;
+}
+
+.notion-toggle {
+  width: 100%;
+}
+
+summary .notion-h {
+  max-width: calc(100vw - 64px);
+}
+@media only screen and (max-width: 600px) {
+  .notion-h1 {
+    font-size: 1.5em;
+  }
+  .notion-h2 {
+    font-size: 1.3em;
+  }
+  .notion-h3 {
+    font-size: 1.1em;
+  }
 }
