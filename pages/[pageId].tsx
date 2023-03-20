@@ -13,6 +13,8 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const rawPageId = context.params.pageId as string
 
   try {
+    console.log(`Building slug: ${context.params?.pageId}`)
+    
     const props = await resolveNotionPage(domain, rawPageId)
 
     return { props, revalidate: 60 }
