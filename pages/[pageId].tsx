@@ -7,6 +7,8 @@ import { getSiteMap } from '@/lib/get-site-map'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { PageProps, Params } from '@/lib/types'
 
+const isGithubActions = process.env.GITHUB_ACTIONS || false
+
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context
 ) => {
@@ -17,7 +19,13 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
     
     const props = await resolveNotionPage(domain, rawPageId)
 
-    return { props, revalidate: 60 }
+    if (isGithubActions) {
+      return { props }
+    } else {
+      // ISR only for Vercel deployment
+      // https://prismic.io/blog/nextjs-sites-on-demand-isr
+      return { props, revalidate: 60 }
+    }
   } catch (err) {
     console.error('page error', domain, rawPageId, err)
 

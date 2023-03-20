@@ -1,24 +1,21 @@
-import * as React from 'react'
-
 import { NotionPage } from '@/components/NotionPage'
 import { domain } from '@/lib/config'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
+import * as React from 'react'
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
 export const getStaticProps = async () => {
   try {
     const props = await resolveNotionPage(domain)
-     
-     if (isGithubActions) {
+
+    if (isGithubActions) {
       return { props }
-     } else 
-     {
+    } else {
       // ISR only for Vercel deployment
       // https://prismic.io/blog/nextjs-sites-on-demand-isr
-      return { props, revalidate: 60  }  
-     }
-    
+      return { props, revalidate: 60 }
+    }
   } catch (err) {
     console.error('page error', domain, err)
 
