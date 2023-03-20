@@ -33,8 +33,8 @@ jobs:
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
           SRC_FOLDER: out
-          DEST_OWNER: vvivanloc
+          DEST_OWNER: ToulouseDataViz
           DEST_REPO: toulousedataviz.github.io
           DEST_BRANCH: master
           DEST_FOLDER: guidelines
-          DEST_PREDEPLOY_CLEANUP: 'rm index.html'
+          DEST_PREDEPLOY_CLEANUP: 'rm -rf out'
