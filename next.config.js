@@ -1,4 +1,3 @@
-
 // next.config.js
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -8,6 +7,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const withPlugins = require('next-compose-plugins')
 const optimizedImages = require('next-optimized-images')
+const nextConfig = {
+  output: 'export'
+}
 
 module.exports = withPlugins([
   [
@@ -39,7 +41,8 @@ module.exports = withPlugins([
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
       }
     })
-  ]
+  ],
+  nextConfig
 
   // your other plugins here
 ])
