@@ -7,8 +7,24 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const withPlugins = require('next-compose-plugins')
 const optimizedImages = require('next-optimized-images')
+
+const isGithubActions = process.env.GITHUB_ACTIONS || false
+
+let assetPrefix = ''
+let basePath = '/'
+
+// see https://www.viget.com/articles/host-build-and-deploy-next-js-projects-on-github-pages/#configure-paths
+if (isGithubActions) {
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+
+  assetPrefix = `/${repo}/`
+  basePath = `/${repo}`
+}
+
 const nextConfig = {
-  output: 'export'
+  output: 'export',
+  assetPrefix: assetPrefix,
+  basePath: basePath
 }
 
 module.exports = withPlugins([
