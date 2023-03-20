@@ -20,9 +20,10 @@ jobs:
           node-version: 16
           cache: npm
 
+      # npm ci see https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci
       - name: Build
         run: |
-          npm ci
+          npm install
           npm run build
           npm run export
           touch out/.nojekyll
