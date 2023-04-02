@@ -10,9 +10,7 @@ jobs:
 
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v3
-        with:
-          path: notion2site
+      - uses: actions/checkout@v3    
 
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
@@ -35,7 +33,6 @@ jobs:
         with:
           repository: ToulouseDataViz/${DEST_REPO}
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          path: $DEST_REPO
 
       - name: Release build
         #uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
