@@ -18,9 +18,9 @@ jobs:
       - name: Checkout ToulouseDataviz/${DEST_REPO}
         uses: actions/checkout@v3
         with:
-          repository: ToulouseDataViz/${DEST_REPO}
-          #token: ${{ GITHUB_ACCESS_TOKEN }}
-          path:${DEST_REPO}
+           #token: ${{ GITHUB_ACCESS_TOKEN }}
+           repository: ToulouseDataViz/${DEST_REPO}
+           path: ${DEST_REPO}
 
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
