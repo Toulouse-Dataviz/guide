@@ -11,16 +11,14 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout notion2site
-        uses: actions/checkout@v3    
-        with:
-           path: notion2site
+        uses: actions/checkout@v3   
 
       - name: Checkout ToulouseDataViz/toulousedataviz.github.io
         uses: actions/checkout@v3
         with:
            #token: ${{ GITHUB_ACCESS_TOKEN }}
            repository: ToulouseDataViz/toulousedataviz.github.io
-           path: toulousedataviz.github.io
+           path: $GITHUB_WORKSPACE/toulousedataviz.github.io
            ref: master
 
       # a standard step for GitHub actions on Node
