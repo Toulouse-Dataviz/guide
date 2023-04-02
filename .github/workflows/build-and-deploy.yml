@@ -11,6 +11,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v3
+        with:
+          path: notion2site
 
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
@@ -28,8 +30,34 @@ jobs:
           npm run export
           touch out/.nojekyll
 
+      - name: Checkout private tools
+        uses: actions/checkout@v3
+        with:
+          repository: ToulouseDataViz/${DEST_REPO}
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+          path: $DEST_REPO
+
       - name: Release build
-        uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
+        #uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
+        run: |
+          git config --global user.email "vincent.vivanloc@laposte.net"
+          git config --global user.name "vvivanloc"
+
+          echo "⭐️ Cleaning old files"
+          rm -rf $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
+          mkdir -p $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
+          
+          echo "⭐️ Copying files from $SRC_FOLDER"
+          cp -R $GITHUB_WORKSPACE/$SRC_FOLDER/* $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
+
+          echo "⭐️ Committing changes"
+          cd $GITHUB_WORKSPACE/$DEST_REPO
+          git add .
+          git commit -m "Automated release: $(date '+%Y-%m-%d, %H:%M:%S')"
+
+          echo "⭐️ Pushing changes to $DEST_BRANCH"
+          git push $DEST_REPO_PATH $DEST_BRANCH
+
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
           SRC_FOLDER: out
@@ -37,4 +65,4 @@ jobs:
           DEST_REPO: toulousedataviz.github.io
           DEST_BRANCH: master
           DEST_FOLDER: guidelines
-          DEST_PREDEPLOY_CLEANUP: 'rm -rf out'
+          
