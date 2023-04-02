@@ -12,6 +12,15 @@ jobs:
       # https://github.com/actions/checkout
       - name: Checkout notion2site
         uses: actions/checkout@v3    
+        with:
+           path: notion2site
+
+      - name: Checkout ToulouseDataviz/${DEST_REPO}
+        uses: actions/checkout@v3
+        with:
+          repository: ToulouseDataViz/${DEST_REPO}
+          #token: ${{ GITHUB_ACCESS_TOKEN }}
+          path:${DEST_REPO}
 
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
@@ -24,16 +33,13 @@ jobs:
       # npm ci see https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci
       - name: Build
         run: |
+          cd notion2site
           npm install
           npm run build
           npm run export
           touch out/.nojekyll
 
-      - name: Checkout ToulouseDataviz/${DEST_REPO}
-        uses: actions/checkout@v3
-        with:
-          repository: ToulouseDataViz/${DEST_REPO}
-          token: ${{ GITHUB_ACCESS_TOKEN }}
+     
 
       - name: Release build
         #uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
