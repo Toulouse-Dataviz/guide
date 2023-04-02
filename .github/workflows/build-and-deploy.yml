@@ -24,7 +24,6 @@ jobs:
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
       - uses: actions/setup-node@v3
-        working-directory: notion2site
         with:
           # update the Node version to meet your needs
           node-version: 16
@@ -32,7 +31,6 @@ jobs:
 
       # npm ci see https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci
       - name: Build
-        working-directory: notion2site
         run: |
           npm install
           npm run build
