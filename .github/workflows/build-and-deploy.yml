@@ -15,15 +15,13 @@ jobs:
         with:
            path: notion2site
 
-      - name: Checkout ${DEST_OWNER}/${DEST_REPO}
+      - name: Checkout ToulouseDataViz/toulousedataviz.github.io
         uses: actions/checkout@v3
         with:
            #token: ${{ GITHUB_ACCESS_TOKEN }}
-           repository: ${DEST_OWNER}/${DEST_REPO}
-           path: ${DEST_REPO}
-        env:
-          DEST_OWNER: ToulouseDataViz
-          DEST_REPO: toulousedataviz.github.io
+           repository: ToulouseDataViz/toulousedataviz.github.io
+           path: toulousedataviz.github.io
+           ref: master
 
       # a standard step for GitHub actions on Node
       # https://github.com/actions/setup-node
