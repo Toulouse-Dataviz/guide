@@ -18,7 +18,7 @@ jobs:
         with:
            #token: ${{ GITHUB_ACCESS_TOKEN }}
            repository: ToulouseDataViz/toulousedataviz.github.io
-           path: ${{GITHUB_WORKSPACE}}/toulousedataviz.github.io
+           path: ${GITHUB_WORKSPACE}/toulousedataviz.github.io
            ref: master
 
       # a standard step for GitHub actions on Node
