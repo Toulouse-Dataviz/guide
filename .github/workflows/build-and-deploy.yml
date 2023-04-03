@@ -37,7 +37,7 @@ jobs:
           npm run export
           touch out/.nojekyll
      
-      - name: Copy build to toulousedataviz.github.io
+      - name: Push build to toulousedataviz.github.io
         #uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
         run: |
           git config --global user.email "vincent.vivanloc@laposte.net"
@@ -55,13 +55,12 @@ jobs:
           git add .
           git commit -m "Automated release: $(date '+%Y-%m-%d, %H:%M:%S')"
 
-          echo "⭐️ Pushing changes to $DEST_BRANCH"
-          git push
+          echo "⭐️ Pushing changes"
+          git push https://${GITHUB_ACCESS_TOKEN}@github.com/ToulouseDataViz/toulousedataviz.github.io.git
 
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
           SRC_FOLDER: out          
           DEST_REPO: toulousedataviz.github.io
-          DEST_BRANCH: master
           DEST_FOLDER: guidelines
           
