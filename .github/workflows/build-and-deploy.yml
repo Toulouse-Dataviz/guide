@@ -18,7 +18,7 @@ jobs:
         with:
            #token: ${{ GITHUB_ACCESS_TOKEN }}
            repository: ToulouseDataViz/toulousedataviz.github.io
-           path: ${GITHUB_WORKSPACE}/toulousedataviz.github.io
+           path: toulousedataviz.github.io
            ref: master
 
       # a standard step for GitHub actions on Node
@@ -30,26 +30,25 @@ jobs:
           cache: npm
 
       # npm ci see https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci
-      - name: Build
+      - name: Build guidelines
         run: |
           npm install
           npm run build
           npm run export
           touch out/.nojekyll
      
-
-      - name: Release build
+      - name: Copy build to toulousedataviz.github.io
         #uses: jigglycrumb/action-deploy-workspace-to-repo@v2.2
         run: |
           git config --global user.email "vincent.vivanloc@laposte.net"
           git config --global user.name "vvivanloc"
 
-          echo "⭐️ Cleaning old files"
+          echo "Cleaning old files"
           rm -rf $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
           mkdir -p $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
           
-          echo "⭐️ Copying files from $SRC_FOLDER"
-          cp -R $GITHUB_WORKSPACE/notion2site/$SRC_FOLDER/* $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
+          echo "Copying files from $SRC_FOLDER"
+          cp -R $GITHUB_WORKSPACE/$SRC_FOLDER/* $GITHUB_WORKSPACE/$DEST_REPO/$DEST_FOLDER
 
           echo "⭐️ Committing changes"
           cd $GITHUB_WORKSPACE/$DEST_REPO
