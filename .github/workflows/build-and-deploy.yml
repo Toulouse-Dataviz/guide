@@ -56,7 +56,7 @@ jobs:
           git commit -m "Automated release: $(date '+%Y-%m-%d, %H:%M:%S')"
 
           echo "⭐️ Pushing changes to $DEST_BRANCH"
-          git push $DEST_REPO_PATH $DEST_BRANCH
+          git push
 
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
