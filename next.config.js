@@ -11,7 +11,9 @@ const optimizedImages = require('next-optimized-images')
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
 let assetPrefix = ''
-let basePath = ''
+// for github deploy
+let basePath = '/pf_guidelines'
+
 
 // see https://www.viget.com/articles/host-build-and-deploy-next-js-projects-on-github-pages/#configure-paths
 if (isGithubActions) {
@@ -22,7 +24,7 @@ if (isGithubActions) {
 }
 
 const nextConfig = {
-  output: 'export',
+  //output: 'export',
   assetPrefix: assetPrefix,
   basePath: basePath
 }

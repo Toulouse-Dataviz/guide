@@ -7,6 +7,7 @@ import { getSiteMap } from '@/lib/get-site-map'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { PageProps, Params } from '@/lib/types'
 
+const disableISR = true
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
@@ -19,7 +20,7 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
     
     const props = await resolveNotionPage(domain, rawPageId)
 
-    if (isGithubActions) {
+    if (disableISR || isGithubActions) {
       return { props }
     } else {
       // ISR only for Vercel deployment
