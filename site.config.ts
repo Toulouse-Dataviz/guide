@@ -5,8 +5,8 @@ export default siteConfig({
   //rootNotionPageId: '7875426197cf461698809def95960ebf',
   //rootNotionPageId: 'percep/ba623f2cbde54e888d88a9fc50016f21?v=b2af88821e6d47eeba7a827ff65573c6',
   rootNotionPageId:
-    'toulouse-dataviz.notion.site/33d69905ad354e0385ccb3a12df48830?v=12bec766fd194c69b56e8145f2a2c74a',
-
+    'toulouse-dataviz.notion.site/95d49263abd74048bbb1461957b136ed?v=82f7765d47444562b74dcecfd0a3e8ae&pvs=4',
+    
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
@@ -19,7 +19,7 @@ export default siteConfig({
     'Toulouse DataViz (A. Roan et V. Vivanloc) à partir de transitivebullsh.it',
 
   // open graph metadata (optional)
-  description: 'Guidelines PF de Toulouse DataViz',
+  description: 'Guidelines Pierre Fabre de Toulouse DataViz',
 
   // social usernames (optional)
   twitter: 'Tls_dataviz',
