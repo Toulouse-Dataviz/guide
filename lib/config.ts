@@ -104,6 +104,8 @@ export const navigationLinks: Array<NavigationLink | null> = getSiteConfig(
 // Optional site search
 export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
 
+export const showPageTitle: boolean = getSiteConfig('showPageTitle', true);
+export const showBreadcrumb: boolean = getSiteConfig('showBreadcrumb', true);
 // ----------------------------------------------------------------------------
 
 // Optional redis instance for persisting preview images

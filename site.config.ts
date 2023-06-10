@@ -16,7 +16,7 @@ export default siteConfig({
   domain: 'notion2site.vercel.app',
   author: 'TDV',
   copyright:
-    'Toulouse DataViz (A. Roan et V. Vivanloc) à partir de transitivebullsh.it',
+    'TDV - Next.js Notion Starter Kit',
 
   // open graph metadata (optional)
   description: 'Guidelines Pierre Fabre de Toulouse DataViz',
@@ -59,16 +59,14 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages
-  navigationStyle: 'default'
-  // navigationStyle: 'custom',
-  // navigationLinks: [
-  //   {
-  //     title: 'About',
-  //     pageId: 'f1199d37579b41cbabfc0b5174f4256a'
-  //   },
-  //   {
-  //     title: 'Contact',
-  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
-  //   }
-  // ]
+ navigationStyle: 'custom',
+  navigationLinks: [
+    {
+      title: 'Page principale',
+      pageId: '95d49263abd74048bbb1461957b136ed'
+    },  
+  ],
+  showPageTitle:true,
+  showBreadcrumb:false,
+  isSearchEnabled: false
 })
