@@ -1,12 +1,13 @@
 // see Mytchall Bransgrove, Create a fully static Next.js site with local images, July 2022,
 // https://mytchall.dev/create-a-fully-static-next-js-site-with-local-images/
 
-
-const patchSite = true
+/** enable download */
 const downloadImages = true
+/** rewrite site URLs (set to false to force download again, otherwise, nothing is downloaded if it has been already */
+const patchSite = true
 
 // Dependencies:
-// npm i jsdom walk replaceall
+// jsdom walk replaceall
 
 const path = require('path')
 const fs = require('fs')
@@ -15,18 +16,17 @@ const fsp = fs.promises
 const walk = require('walk')
 const replaceAll = require('replaceall')
 const { JSDOM } = require('jsdom')
-const util = require('util')
 const exec = require('child_process').exec
 
 // usage :
-// node fetchImages.js nextjsOutDirectory imagesPrefix1 imagesPrefix2 imagesPrefix3
+// node fetchAssets.js nextjsOutDirectory imagesPrefix1 imagesPrefix2 imagesPrefix3
 
 // example :
-// node fetchImages.js ./out http://localhost:1337
+// node fetchAssets.js ./out http://localhost:1337
 
 // What I did :
 // - Put the file at the root of my project
-// - Edit my "export" npm script and add "&& npm run fetchImages.js xxx" after "next build && next export"
+// - Edit my "export" npm script and add "&& npm run fetchAssets.js xxx" after "next build && next export"
 
 let startPath = process.argv[2]
 let urls = process.argv.slice(3)
@@ -36,20 +36,20 @@ const assetFolder = 'images/'
 const outAssetFolder = path.join(startPath, assetFolder)
 fs.mkdirSync(outAssetFolder, { recursive: true })
 
-async function fetchImages() {
+async function fetchAssets() {
   console.log(`Walking ${startPath}...`)
   let walker = walk.walk(startPath)
   walker.on('file', async (root, fileStats, next) => {
     if (fileStats.name.indexOf('.html') > 0) {
       const filePath = path.join(root, fileStats.name)
       const file = await fsp.readFile(filePath, { encoding: 'utf-8' })
-      await handlePage(file)
-      await updatePage(file, filePath)
+      await downloadImagesFromHtmlPage(file)
+      await rewritePageAssetUrls(file, filePath)
     } else if (fileStats.name.indexOf('.json') > 0) {
       const filePath = path.join(root, fileStats.name)
       const file = await fsp.readFile(filePath, { encoding: 'utf-8' })
-      await handleJson(file)
-      await updatePage(file, filePath)
+      await downloadImagesFromJsonFile(file)
+      await rewritePageAssetUrls(file, filePath)
     }
     next()
   })
@@ -59,12 +59,15 @@ async function fetchImages() {
   })
 }
 
-async function handlePage(data) {
+async function downloadImagesFromHtmlPage(data) {
   let dom = new JSDOM(data, { resources: 'usable' })
-  let srcs = dom.window.document.querySelectorAll('img[src]')
-  let srcSets = dom.window.document.querySelectorAll('img[srcSet]')
+  let imgSources = dom.window.document.querySelectorAll('img[src]')
+  let imgSourceSets = dom.window.document.querySelectorAll('img[srcSet]')
+  let fileLinkSources = dom.window.document.querySelectorAll(
+    'a.notion-file-link[href]'
+  )
 
-  function setUrls(src) {
+  function downloadImageFromUrl(src) {
     if (src && src !== '') {
       if (src.indexOf('http') === 0) {
         downloadSrc(src)
@@ -72,23 +75,30 @@ async function handlePage(data) {
     }
   }
 
-  srcs.forEach((e) => setUrls(e.getAttribute('src')))
+  function downloadAssetFromUrl(src) {
+    if (src && src !== '') {
+      if (src.indexOf('http') === 0) {
+        downloadSrc(src, true)
+      }
+    }
+  }
 
-  srcSets.forEach((srcSet) => {
+  imgSources.forEach((e) => downloadImageFromUrl(e.getAttribute('src')))
+
+  imgSourceSets.forEach((srcSet) => {
     const imgSrcSet = srcSet.getAttribute('srcset')
     imgSrcSet.split(', ').forEach((src) => {
-      setUrls(src)
+      downloadImageFromUrl(src)
     })
   })
+
+  fileLinkSources.forEach((e) => downloadAssetFromUrl(e.getAttribute('href')))
 }
 
-// Update the pages' content
-async function updatePage(data, filePath) {
-    console.log(` patching ${completeUrls.length} URLs`)
-   // console.log(completeUrls)
-   // console.log(completeUrlsTrimmed)
-   // console.log(completeUrls.map(u=>decodeURIComponent(u)))
-    
+/** Rewrite page asset URL to local paths */
+async function rewritePageAssetUrls(data, filePath) {
+  console.log(` patching ${completeUrls.length} assets URLs`)
+
   // Loop through completeUrls
   for (let i = 0; i < completeUrls.length; i++) {
     data = replaceAll(
@@ -97,29 +107,29 @@ async function updatePage(data, filePath) {
       data
     )
     data = replaceAll(
-        decodeURIComponent(completeUrls[i]),
-        path.join(assetFolder, completeUrlsTrimmed[i]),
-        data
-      )
+      decodeURIComponent(completeUrls[i]),
+      path.join(assetFolder, completeUrlsTrimmed[i]),
+      data
+    )
 
-      data = replaceAll(
-        replaceAll("&","&amp;",completeUrls[i]),
-        path.join(assetFolder, completeUrlsTrimmed[i]),
-        data
-      )
+    data = replaceAll(
+      replaceAll('&', '&amp;', completeUrls[i]),
+      path.join(assetFolder, completeUrlsTrimmed[i]),
+      data
+    )
   }
 
   try {
     console.log(` updating file ${filePath}`)
     if (patchSite) {
-        fsp.writeFile(filePath, data, { encoding: 'utf8' })
+      fsp.writeFile(filePath, data, { encoding: 'utf8' })
     }
   } catch (e) {
     console.log(e)
   }
 }
 
-async function handleJson(data) {
+async function downloadImagesFromJsonFile(data) {
   let srcs = []
   urls.forEach((url) => {
     console.log('looping through URL: ', url)
@@ -128,8 +138,7 @@ async function handleJson(data) {
   })
   srcs = srcs.flat().map((e) => e.replace(/"/g, ''))
 
-  
-  function setUrls(src) {
+  function _downloadAsset(src) {
     if (src && src !== '') {
       if (src.indexOf('http') === 0) {
         downloadSrc(src)
@@ -137,57 +146,72 @@ async function handleJson(data) {
     }
   }
 
-  srcs.forEach((e) => setUrls(e))
+  srcs.forEach((e) => _downloadAsset(e))
 }
 
 // Download src images
-async function downloadSrc(src) {
+async function downloadSrc(src, rawUrlPath) {
   console.log('src = ' + src)
 
+  
   const urlTrimmed = src.split('?')[0]
-  const filename = urlTrimmed.split('/').slice(-1)[0]
+  
 
+  const filename = urlTrimmed.split('/').slice(-1)[0]
   const args = src.split('?')[1]
 
   const argsSplit = args.split('&')
 
   const filenameFixSplit = filename.split('%2F')
   const filenameFixLength = filenameFixSplit.length
-  let filenameFix =
-    filenameFixSplit[filenameFixLength - 2] +
-    '_' +
+
+  let filenamePrefix = filenameFixSplit[filenameFixLength - 2];
+  if (filenamePrefix===undefined) {
+    const argSpaceIdArray=argsSplit.filter(arg=>arg.startsWith("spaceId"))
+    if (argSpaceIdArray.length>0) {
+      const argSpaceId= argSpaceIdArray[0];
+      filenamePrefix=argSpaceId.slice(argSpaceId.indexOf("=")+1);
+    }
+  }
+  
+  let filenameFix = filenamePrefix + '_' +
     filenameFixSplit[filenameFixLength - 1].split('%3F')[0]
 
-  console.log('downloading from asset', src, ' to ', filenameFix)
+  console.log('downloading from asset', src, 'to', filenameFix)
 
   if (completeUrls.indexOf(src) === -1) {
     completeUrls.push(src)
     completeUrlsTrimmed.push(filenameFix)
   }
 
+  
+
   try {
-    const fullpath=path.join(startPath, assetFolder, filenameFix)
+    const fullpath = path.join(startPath, assetFolder, filenameFix)
     await fsp.stat(fullpath)
     console.log('skipping asset named', fullpath, 'already exists')
   } catch (e) {
-    
-    //console.log('downloading to assets', urlTrimmed.split('/').slice(-1))
-
-    //await download(urlTrimmed.split('?')[0], path.join(startPath, assetFolder))
-    //await download(src, )
-
-
     if (downloadImages) {
-      const command = `curl -X GET -G "${urlTrimmed.split('?')[0]}" -d ${
+
+  let downloadPath = src;
+  if (rawUrlPath) {    
+    downloadPath = src;
+  } else 
+  {
+    downloadPath = urlTrimmed.split('?')[0];  
+  }
+  
+  console.log('downloadPath = ' + downloadPath)
+      const command = `curl -X GET -G "${downloadPath}" -d ${
         argsSplit[0]
       } -d ${argsSplit[1]} -d ${argsSplit[2]} -o ${path.join(
         outAssetFolder,
-        filenameFix.replace("(","\\(").replace(")","\\)")
+        filenameFix.replace('(', '\\(').replace(')', '\\)')
       )}`
 
       console.log(command)
       child = exec(command, function (error, _stdout, _stderr) {
-          if (error !== null) {
+        if (error !== null) {
           console.log(`\x1b[31m exec error: ${error}\x1b[0m`)
         }
       })
@@ -195,5 +219,5 @@ async function downloadSrc(src) {
   }
 }
 
-console.log('Fetching images...')
-fetchImages()
+console.log('Fetching assets...')
+fetchAssets()
