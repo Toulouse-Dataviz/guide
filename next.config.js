@@ -60,7 +60,18 @@ module.exports = withPlugins([
       }
     })
   ],
-  nextConfig
+  nextConfig,
+  {
+    async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/guide',
+        permanent: true,
+      },
+    ]
+  }
+}
 
   // your other plugins here
 ])
