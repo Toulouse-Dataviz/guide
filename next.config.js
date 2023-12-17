@@ -77,8 +77,7 @@ module.exports = withPlugins([
   return [
     {
       source: '/',
-      destination: '/guide',
-      permanent: true,
+      destination: '/guide'
     },
   ]
 }
