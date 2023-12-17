@@ -101,20 +101,22 @@ async function rewritePageAssetUrls(data, filePath) {
 
   // Loop through completeUrls
   for (let i = 0; i < completeUrls.length; i++) {
+    const url= completeUrls[i];
+    const urlTrimmed= completeUrlsTrimmed[i];
     data = replaceAll(
-      completeUrls[i],
-      assetFolder + completeUrlsTrimmed[i],
+      url,
+      assetFolder + urlTrimmed,
       data
     )
     data = replaceAll(
-      decodeURIComponent(completeUrls[i]),
-      path.join(assetFolder, completeUrlsTrimmed[i]),
+      decodeURIComponent(url),
+      path.join(assetFolder, urlTrimmed),
       data
     )
 
     data = replaceAll(
-      replaceAll('&', '&amp;', completeUrls[i]),
-      path.join(assetFolder, completeUrlsTrimmed[i]),
+      replaceAll('&', '&amp;', url),
+      path.join(assetFolder, urlTrimmed),
       data
     )
   }
@@ -180,8 +182,10 @@ async function downloadSrc(src, rawUrlPath) {
   console.log('downloading from asset', src, 'to', filenameFix)
 
   if (completeUrls.indexOf(src) === -1) {
-    completeUrls.push(src)
-    completeUrlsTrimmed.push(filenameFix)
+    if (filenameFix.endsWith(".jpeg") || filenameFix.endsWith(".jpg") || filenameFix.endsWith(".png") || filenameFix.endsWith(".webm")) {
+      completeUrls.push(src)
+      completeUrlsTrimmed.push(filenameFix)
+    }
   }
 
   

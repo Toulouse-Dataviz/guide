@@ -1,6 +1,8 @@
 #!/bin/bash
 # dedicated to githubpages, to not fiddle with _next
-cloneRepoPath=/userdata/dev/tdv_site/toulousedataviz.github.io 
+#cloneRepoPath=/userdata/dev/tdv_site/toulousedataviz.github.io
+mkdir -p docs
+cloneRepoPath=docs
 touch out/.nojekyll
 cp -R out/* $cloneRepoPath
-mv $cloneRepoPath/index.html $cloneRepoPath/guide.html 
+#mv $cloneRepoPath/index.html $cloneRepoPath/guide.html 

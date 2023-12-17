@@ -5,7 +5,7 @@ export default siteConfig({
   //rootNotionPageId: '7875426197cf461698809def95960ebf',
   //rootNotionPageId: 'percep/ba623f2cbde54e888d88a9fc50016f21?v=b2af88821e6d47eeba7a827ff65573c6',
   rootNotionPageId:
-    'toulouse-dataviz.notion.site/d40d1fb9db6749c5b7e905620122a385?v=8f058d7b1d5c49bfbb1ed042c780d39d&pvs=4',
+    'toulouse-dataviz.notion.site/3ae40501bf7547368428bcec177e6328?v=117abe6706ef4ece846d8266217ea8ac&pvs=4',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,

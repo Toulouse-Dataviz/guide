@@ -410,3 +410,7 @@ summary .notion-h {
     font-size: 1.1em;
   }
 }
+
+.dark-mode .notion-file-icon {   
+    fill: white;
+}
