@@ -12,7 +12,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false
 
 let assetPrefix = ''
 // for github deploy
-let basePath = ''
+let basePath = 'guide'
 
 
 // see https://www.viget.com/articles/host-build-and-deploy-next-js-projects-on-github-pages/#configure-paths
