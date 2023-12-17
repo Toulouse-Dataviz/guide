@@ -10,7 +10,7 @@ const optimizedImages = require('next-optimized-images')
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
-let assetPrefix = 'https://toulouse-dataviz.github.io/guide/'
+let assetPrefix = '/guide/'
 // for github deploy
 let basePath = '/guide'
 
