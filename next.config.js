@@ -71,6 +71,17 @@ module.exports = withPlugins([
       },
     ]
   }
+},
+{
+  async rewrites() {
+  return [
+    {
+      source: '/',
+      destination: '/guide',
+      permanent: true,
+    },
+  ]
+}
 }
 
   // your other plugins here
