@@ -10,9 +10,9 @@ const optimizedImages = require('next-optimized-images')
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
-let assetPrefix = '/guide/'
+let assetPrefix = 'https://toulouse-dataviz.github.io/guide/'
 // for github deploy
-let basePath = '/guide'
+let basePath = 'https://toulouse-dataviz.github.io/guide'
 
 
 // see https://www.viget.com/articles/host-build-and-deploy-next-js-projects-on-github-pages/#configure-paths
