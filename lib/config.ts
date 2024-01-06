@@ -101,6 +101,9 @@ export const navigationLinks: Array<NavigationLink | null> = getSiteConfig(
   null
 )
 
+// use dedicated URL prefix in Notion page links
+export const linkPrefixUrl: string = getSiteConfig('linkPrefixUrl', "/")
+
 // Optional site search
 export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
 

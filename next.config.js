@@ -10,7 +10,7 @@ const optimizedImages = require('next-optimized-images')
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
-let assetPrefix = 'https://toulouse-dataviz.github.io/guide/'
+let assetPrefix = ''
 // for github deploy
 let basePath = '/guide'
 
@@ -23,10 +23,11 @@ if (isGithubActions) {
   //basePath = `/${repo}`
 }
 
+// do not uncomment output: 'export', it makes generation crashes :(
 const nextConfig = {
   //output: 'export',
   assetPrefix: assetPrefix,
-  basePath: basePath
+  basePath: basePath 
 }
 
 module.exports = withPlugins([
@@ -61,27 +62,6 @@ module.exports = withPlugins([
     })
   ],
   nextConfig,
-  {
-    async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/guide',
-        permanent: true,
-      },
-    ]
-  }
-},
-{
-  async rewrites() {
-  return [
-    {
-      source: '/',
-      destination: '/guide'
-    },
-  ]
-}
-}
 
   // your other plugins here
 ])

@@ -62,7 +62,7 @@ export default siteConfig({
   navigationLinks: [
     {
       title: 'Accueil',
-      url: 'guide.html'
+      url: 'index.html'
     },  
     {
       title: 'A propos',
@@ -71,5 +71,8 @@ export default siteConfig({
   ],
   showPageTitle:true,
   showBreadcrumb:false,
-  isSearchEnabled: false
+  isSearchEnabled: false,
+
+  // set it at "/" for root folder stored site otherwise, set to "" if the site is stored in a given folder
+  linkPrefixUrl:""  
 })

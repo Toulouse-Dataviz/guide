@@ -39,6 +39,8 @@ export interface SiteConfig {
 
   showPageTitle?: boolean;
   showBreadcrumb?: boolean;
+
+  linkPrefixUrl?: string;
 }
 
 export interface NavigationLink {

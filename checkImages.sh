@@ -5,21 +5,18 @@ W=1280
 H=800
 SIZE_TEST="%[fx:(h>$H && w>$W)]"'\n'
 
-while test $# -gt 0
-do
-    case "$1" in
-        -c) 
-            echo "convert files!"
-            convert="true"
-            ;;
-        *) echo "-c to convert"
-            exit 0
-            ;;
-    esac
-    shift
-done
+if test $# -lt 2; then
+    echo "$0 source_folder -c to convert"
+    exit 0
+fi
 
-find out -type f \( -name \*.png -o -name \*.jp* -o -name \*.webm \) | while read f; do 
+echo "- Input folder: $1"
+if test $2 == '-c'; then 
+    echo "- Converting files!"
+    convert="true"
+fi
+
+find $1 -type f \( -name \*.png -o -name \*.jp* -o -name \*.webm \) | while read f; do 
    width=$(exiftool -s -ImageWidth $f -S)
    height=$(exiftool -s -ImageHeight $f -S)
    if [[ $width -gt $W && $height -gt $H ]]; then

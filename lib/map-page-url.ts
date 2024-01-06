@@ -2,6 +2,7 @@ import { ExtendedRecordMap } from 'notion-types'
 import { parsePageId, uuidToId } from 'notion-utils'
 
 import { includeNotionIdInUrls } from './config'
+import { linkPrefixUrl } from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
 import { Site } from './types'
 
@@ -13,12 +14,12 @@ export const mapPageUrl =
   (site: Site, recordMap: ExtendedRecordMap, searchParams: URLSearchParams) =>
   (pageId = '') => {
     const pageUuid = parsePageId(pageId, { uuid: true })
-
+    const _linkPrefixUrl = linkPrefixUrl??"/";
     if (uuidToId(pageUuid) === site.rootNotionPageId) {
-      return createUrl('/', searchParams)
+      return createUrl(_linkPrefixUrl, searchParams)
     } else {
       return createUrl(
-        `/${getCanonicalPageId(pageUuid, recordMap, { uuid })}`,
+        `${_linkPrefixUrl}${getCanonicalPageId(pageUuid, recordMap, { uuid })}`,
         searchParams
       )
     }
