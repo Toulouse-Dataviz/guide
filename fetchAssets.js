@@ -101,8 +101,8 @@ async function rewritePageAssetUrls(data, filePath) {
 
   // Loop through completeUrls
   for (let i = 0; i < completeUrls.length; i++) {
-    const url= completeUrls[i];
-    const urlTrimmed= completeUrlsTrimmed[i];
+    const url = completeUrls[i];
+    const urlTrimmed = completeUrlsTrimmed[i];
     data = replaceAll(
       url,
       assetFolder + urlTrimmed,
@@ -155,72 +155,81 @@ async function downloadImagesFromJsonFile(data) {
 async function downloadSrc(src, rawUrlPath) {
   console.log('src = ' + src)
 
-  
+
   const urlTrimmed = src.split('?')[0]
-  
+
 
   const filename = urlTrimmed.split('/').slice(-1)[0]
   const args = src.split('?')[1]
 
-  const argsSplit = args.split('&')
-
-  const filenameFixSplit = filename.split('%2F')
-  const filenameFixLength = filenameFixSplit.length
-
-  let filenamePrefix = filenameFixSplit[filenameFixLength - 2];
-  if (filenamePrefix===undefined) {
-    const argSpaceIdArray=argsSplit.filter(arg=>arg.startsWith("spaceId"))
-    if (argSpaceIdArray.length>0) {
-      const argSpaceId= argSpaceIdArray[0];
-      filenamePrefix=argSpaceId.slice(argSpaceId.indexOf("=")+1);
-    }
-  }
-  
-  let filenameFix = filenamePrefix + '_' +
-    filenameFixSplit[filenameFixLength - 1].split('%3F')[0]
-
-  console.log('downloading from asset', src, 'to', filenameFix)
-
-  if (completeUrls.indexOf(src) === -1) {
-    if (filenameFix.endsWith(".jpeg") || filenameFix.endsWith(".jpg") || filenameFix.endsWith(".png") || filenameFix.endsWith(".webm")) {
-      completeUrls.push(src)
-      completeUrlsTrimmed.push(filenameFix)
-    }
-  }
-
-  
 
   try {
-    const fullpath = path.join(startPath, assetFolder, filenameFix)
-    await fsp.stat(fullpath)
-    console.log('skipping asset named', fullpath, 'already exists')
-  } catch (e) {
-    if (downloadImages) {
+    const argsSplit = args.split('&')
 
-  let downloadPath = src;
-  if (rawUrlPath) {    
-    downloadPath = src;
-  } else 
-  {
-    downloadPath = urlTrimmed.split('?')[0];  
-  }
-  
-  console.log('downloadPath = ' + downloadPath)
-      const command = `curl -X GET -G "${downloadPath}" -d ${
-        argsSplit[0]
-      } -d ${argsSplit[1]} -d ${argsSplit[2]} -o ${path.join(
-        outAssetFolder,
-        filenameFix.replace('(', '\\(').replace(')', '\\)')
-      )}`
+    const filenameFixSplit = filename.split('%2F')
+    const filenameFixLength = filenameFixSplit.length
 
-      console.log(command)
-      child = exec(command, function (error, _stdout, _stderr) {
-        if (error !== null) {
-          console.log(`\x1b[31m exec error: ${error}\x1b[0m`)
-        }
-      })
+    let filenamePrefix = filenameFixSplit[filenameFixLength - 2];
+    if (filenamePrefix === undefined) {
+      const argSpaceIdArray = argsSplit.filter(arg => arg.startsWith("spaceId"))
+      if (argSpaceIdArray.length > 0) {
+        const argSpaceId = argSpaceIdArray[0];
+        filenamePrefix = argSpaceId.slice(argSpaceId.indexOf("=") + 1);
+      }
     }
+
+    let filenameFix = filenamePrefix + '_' +
+      filenameFixSplit[filenameFixLength - 1].split('%3F')[0]
+
+    if (completeUrls.indexOf(src) === -1) {
+      if (filenameFix.endsWith(".jpeg") || filenameFix.endsWith(".jpg") || filenameFix.endsWith(".png") || filenameFix.endsWith(".webm")) {
+        console.log('downloading from asset', src, 'to', filenameFix)
+        completeUrls.push(src)
+        completeUrlsTrimmed.push(filenameFix)
+      } else {
+        console.log('skipping non supported file extension of asset', src, 'to', filenameFix)
+        return
+      }
+    }
+
+    try {
+      const fullpath = path.join(startPath, assetFolder, filenameFix)
+      await fsp.stat(fullpath)
+      console.log('skipping asset named', fullpath, 'already exists')
+    } catch (e) {
+      if (downloadImages) {
+
+        let downloadPath = src;
+        if (rawUrlPath) {
+          downloadPath = src;
+        } else {
+          downloadPath = urlTrimmed.split('?')[0];
+        }
+
+        console.log('downloadPath = ' + downloadPath)
+        if (argsSplit === undefined) {
+          console.log(`\x1b[31m Error extracting URL from: ${src}, ${rawUrlPath}, there is no '&' separator!\x1b[0m`)
+          return
+        }
+        const command = `curl -X GET -G "${downloadPath}" -d ${argsSplit[0]
+          } -d ${argsSplit[1]} -d ${argsSplit[2]} -o ${path.join(
+            outAssetFolder,
+            filenameFix.replace('(', '\\(').replace(')', '\\)')
+          )}`
+
+        console.log(command)
+        child = exec(command, function (error, _stdout, _stderr) {
+          if (error !== null) {
+            console.log(`\x1b[31m exec error: ${error}\x1b[0m`)
+          }
+        })
+      }
+    }
+  } catch (error) {
+    console.log(`\x1b[31m Error fetch source: ${src}, ${rawUrlPath}, ${error}\x1b[0m`)
+    return;
   }
+
 }
 
 console.log('Fetching assets...')

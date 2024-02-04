@@ -2,8 +2,7 @@ import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  //rootNotionPageId: '7875426197cf461698809def95960ebf',
-  //rootNotionPageId: 'percep/ba623f2cbde54e888d88a9fc50016f21?v=b2af88821e6d47eeba7a827ff65573c6',
+  /** IMPORTANT: Do not forget to go "Share"/"Publish" and activate the site during export! */
   rootNotionPageId:
     'toulouse-dataviz.notion.site/3ae40501bf7547368428bcec177e6328?v=117abe6706ef4ece846d8266217ea8ac&pvs=4',
   // if you want to restrict pages to a single notion workspace (optional)
