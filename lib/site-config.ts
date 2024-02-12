@@ -20,6 +20,7 @@ export interface SiteConfig {
   meetup?: string
   mail?: string
   copyright?: string
+  version?: string;
 
   defaultPageIcon?: string | null
   defaultPageCover?: string | null
