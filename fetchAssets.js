@@ -181,8 +181,12 @@ async function downloadSrc(src, rawUrlPath) {
     let filenameFix = filenamePrefix + '_' +
       filenameFixSplit[filenameFixLength - 1].split('%3F')[0]
 
+    const supportedExtensions = [".jpeg", ".jpg",".png",".webm", ".rawgraphs",".ods",".xlsx"];
+    const isSupportedExtension = (filename) => {
+      return supportedExtensions.some((ext)=> filename.endsWith(ext))
+    }
     if (completeUrls.indexOf(src) === -1) {
-      if (filenameFix.endsWith(".jpeg") || filenameFix.endsWith(".jpg") || filenameFix.endsWith(".png") || filenameFix.endsWith(".webm")) {
+      if (isSupportedExtension(filenameFix)) {
         console.log('downloading from asset', src, 'to', filenameFix)
         completeUrls.push(src)
         completeUrlsTrimmed.push(filenameFix)
