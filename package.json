@@ -20,6 +20,7 @@
     "export:download_assets":"npm run export:serve && node ./fetchAssets.js ./docs http://127.0.0.1:8080 && npm run export:serve:stop",
     "export:optimize_images":"echo 'make sure to run export:download_assets before!' && ./checkImages.sh ./docs -c",
     "export:copy_to_githubpages":"echo 'make sure to run export:optimize_images before!' && ./copyToGithubPages.sh",
+    "export:full":"npm run export:clean && npm run build && npm run export && npm run export:download_assets && npm run export:optimize_images && npm run export:copy_to_githubpages",
     "deploy": "vercel deploy",
     "deps": "run-s deps:*",
     "deps:update": "[ -z $GITHUB_ACTIONS ] && yarn add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",

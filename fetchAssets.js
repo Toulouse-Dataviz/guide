@@ -30,8 +30,10 @@ const exec = require('child_process').exec
 
 let startPath = process.argv[2]
 let urls = process.argv.slice(3)
-let completeUrls = []
-let completeUrlsTrimmed = []
+/** URL referring to Notion AWS storage */
+let remoteURLs = []
+/** reformatted URI to be stored locally */
+let localURIs = []
 const assetFolder = 'images/'
 const outAssetFolder = path.join(startPath, assetFolder)
 fs.mkdirSync(outAssetFolder, { recursive: true })
@@ -97,12 +99,12 @@ async function downloadImagesFromHtmlPage(data) {
 
 /** Rewrite page asset URL to local paths */
 async function rewritePageAssetUrls(data, filePath) {
-  console.log(` patching ${completeUrls.length} assets URLs`)
+  console.log(` patching ${remoteURLs.length} assets URLs`)
 
   // Loop through completeUrls
-  for (let i = 0; i < completeUrls.length; i++) {
-    const url = completeUrls[i];
-    const urlTrimmed = completeUrlsTrimmed[i];
+  for (let i = 0; i < remoteURLs.length; i++) {
+    const url = remoteURLs[i];
+    const urlTrimmed = localURIs[i];
     data = replaceAll(
       url,
       assetFolder + urlTrimmed,
@@ -153,17 +155,19 @@ async function downloadImagesFromJsonFile(data) {
 
 // Download src images
 async function downloadSrc(src, rawUrlPath) {
-  console.log('src = ' + src)
-
+//  console.log('src = ' + src)
 
   const urlTrimmed = src.split('?')[0]
-
 
   const filename = urlTrimmed.split('/').slice(-1)[0]
   const args = src.split('?')[1]
 
 
-  try {
+  if (args) {
+    
+    // Notion stored resource format URL 
+    // eg. https://file.notion.so/f/f/adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc/1724d44a-25f4-4e95-bd60-107657b07084/lignes.rawgraphs?id=1890e9d9-1123-4f2e-8468-2c04f85863f2&table=block&spaceId=adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc&expirationTimestamp=1707876000000&signature=rOWnDPmAZYutMevY-oAbLMayXNNu0nO7yrq9bw5DYH0
+    
     const argsSplit = args.split('&')
 
     const filenameFixSplit = filename.split('%2F')
@@ -181,25 +185,17 @@ async function downloadSrc(src, rawUrlPath) {
     let filenameFix = filenamePrefix + '_' +
       filenameFixSplit[filenameFixLength - 1].split('%3F')[0]
 
-    const supportedExtensions = [".jpeg", ".jpg",".png",".webm", ".rawgraphs",".ods",".xlsx"];
-    const isSupportedExtension = (filename) => {
-      return supportedExtensions.some((ext)=> filename.endsWith(ext))
-    }
-    if (completeUrls.indexOf(src) === -1) {
-      if (isSupportedExtension(filenameFix)) {
-        console.log('downloading from asset', src, 'to', filenameFix)
-        completeUrls.push(src)
-        completeUrlsTrimmed.push(filenameFix)
-      } else {
-        console.log('skipping non supported file extension of asset', src, 'to', filenameFix)
-        return
-      }
+    
+    if (remoteURLs.indexOf(src) === -1) {
+        
+        remoteURLs.push(src)
+        localURIs.push(filenameFix)
     }
 
     try {
       const fullpath = path.join(startPath, assetFolder, filenameFix)
       await fsp.stat(fullpath)
-      console.log('skipping asset named', fullpath, 'already exists')
+      console.log('\x1b[33m skipping asset named', fullpath, 'already exists\x1b[0m')
     } catch (e) {
       if (downloadImages) {
 
@@ -210,7 +206,8 @@ async function downloadSrc(src, rawUrlPath) {
           downloadPath = urlTrimmed.split('?')[0];
         }
 
-        console.log('downloadPath = ' + downloadPath)
+        console.log('   >',downloadPath,'>>', filenameFix)
+
         if (argsSplit === undefined) {
           console.log(`\x1b[31m Error extracting URL from: ${src}, ${rawUrlPath}, there is no '&' separator!\x1b[0m`)
           return
@@ -221,7 +218,7 @@ async function downloadSrc(src, rawUrlPath) {
             filenameFix.replace('(', '\\(').replace(')', '\\)')
           )}`
 
-        console.log(command)
+        //console.log(command)
         child = exec(command, function (error, _stdout, _stderr) {
           if (error !== null) {
             console.log(`\x1b[31m exec error: ${error}\x1b[0m`)
@@ -229,10 +226,34 @@ async function downloadSrc(src, rawUrlPath) {
         })
       }
     }
-  } catch (error) {
-    console.log(`\x1b[31m Error fetch source: ${src}, ${rawUrlPath}, ${error}\x1b[0m`)
-    return;
+  } else {
+    // AWS format URL 
+    // eg. https://prod-files-secure.s3.us-west-2.amazonaws.com/adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc/2d5d9e69-f1a5-46f6-b540-89535eef68ef/carte_de_carrs.rawgraphs
+    console.log(src);
+    const srcSplit = src.split("/")
+    
+    remoteURLs.push(src)
+    
+    const localUrl=srcSplit[3]+"_"+srcSplit[srcSplit.length-1];
+    localURIs.push(localUrl);
+    
+    console.log('   >',src,'>>', localUrl)
+
+    const command = `curl -X GET -G "${src}" -o ${path.join(
+      outAssetFolder,
+      localUrl
+    )}`
+
+  //console.log(command)
+  
+  child = exec(command, function (error, _stdout, _stderr) {
+    if (error !== null) {
+      console.log(`\x1b[31m exec error: ${error}\x1b[0m`)
+    }
+  })
+  
   }
+ 
 
 }
 
