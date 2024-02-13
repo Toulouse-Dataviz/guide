@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="360" height="284" version="1.1" viewBox="0 0 360 284" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <clipPath id="clipPath8">
+   <path transform="translate(-40 -452.6)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath10">
+   <path transform="translate(-70.055 -452.2)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath12">
+   <path transform="translate(-100.03 -455.02)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath14">
+   <path transform="translate(-130 -459.51)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath16">
+   <path transform="translate(-159.97 -448.47)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath18">
+   <path transform="translate(-190.03 -397.59)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath20">
+   <path transform="translate(-220 -414.54)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath36">
+   <path transform="translate(-40 -462.79)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath38">
+   <path transform="translate(-70.055 -467.72)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath40">
+   <path transform="translate(-100.03 -484.08)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath42">
+   <path transform="translate(-130 -492)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath44">
+   <path transform="translate(-159.97 -457.46)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath46">
+   <path transform="translate(-190.03 -392.88)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath48">
+   <path transform="translate(-220 -395.55)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath50">
+   <path transform="translate(-33.251 -357.87)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath50-3">
+   <path transform="translate(-33.251 -357.87)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+ </defs>
+ <g fill="#80b1d3">
+  <path transform="matrix(1.3333 0 0 -1.3333 71.333 200.54)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath8)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 129.41 189.07)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath10)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 159.37 159.31)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath12)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 173.33 137.32)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath14)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 209.3 126.03)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath16)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 249.37 65.879)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath18)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 289.33 67.284)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath20)"/>
+ </g>
+ <g fill="#fb8072">
+  <path transform="matrix(1.3333 0 0 -1.3333 89.333 206.95)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath36)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 111.41 180.37)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath38)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 151.37 172.55)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath40)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 199.33 150)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath42)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 217.3 114.05)" d="m0 0c1.104 0 2-0.896 2-2 0-1.105-0.896-2-2-2s-2 0.895-2 2c0 1.104 0.896 2 2 2" clip-path="url(#clipPath44)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 237.37 72.167)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath46)"/>
+  <path transform="matrix(1.3333 0 0 -1.3333 273.33 72.596)" d="m0 0c1.104 0 2-0.896 2-2s-0.896-2-2-2-2 0.896-2 2 0.896 2 2 2" clip-path="url(#clipPath48)"/>
+ </g>
+ <path transform="matrix(1.5559 0 0 -1.3333 27.73 244.81)" d="m0 0h189.5" clip-path="url(#clipPath50)" fill="none" stroke="#808080"/>
+ <path transform="matrix(0 -1.2417 -1.3333 0 40.445 260.19)" d="m0 0h189.5" clip-path="url(#clipPath50-3)" fill="none" stroke="#808080"/>
+</svg>
