@@ -103,22 +103,22 @@ async function rewritePageAssetUrls(data, filePath) {
 
   // Loop through completeUrls
   for (let i = 0; i < remoteURLs.length; i++) {
-    const url = remoteURLs[i];
-    const urlTrimmed = localURIs[i];
+    const urlRemote = remoteURLs[i];
+    const urlLocal = localURIs[i];
     data = replaceAll(
-      url,
-      assetFolder + urlTrimmed,
+      urlRemote,
+      assetFolder + urlLocal,
       data
     )
     data = replaceAll(
-      decodeURIComponent(url),
-      path.join(assetFolder, urlTrimmed),
+      decodeURIComponent(urlRemote),
+      path.join(assetFolder, urlLocal),
       data
     )
 
     data = replaceAll(
-      replaceAll('&', '&amp;', url),
-      path.join(assetFolder, urlTrimmed),
+      replaceAll('&', '&amp;', urlRemote),
+      path.join(assetFolder, urlLocal),
       data
     )
   }
