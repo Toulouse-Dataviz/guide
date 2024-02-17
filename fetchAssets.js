@@ -229,17 +229,35 @@ async function downloadSrc(src, rawUrlPath) {
   } else {
     // AWS format URL 
     // eg. https://prod-files-secure.s3.us-west-2.amazonaws.com/adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc/2d5d9e69-f1a5-46f6-b540-89535eef68ef/carte_de_carrs.rawgraphs
-    console.log(src);
+    // becomes
+    //     https://file.notion.so/f/f/adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc/2d5d9e69-f1a5-46f6-b540-89535eef68ef/carte_de_carrs.rawgraphs?id=85d1150e-fc69-4d29-8a37-acba7bb9f0fc&table=block&spaceId=adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc&expirationTimestamp=1708034400000&signature=PLcAGOyinaRuyCOtAgEefPMiPPFajNObzw-P9IjxqRc&downloadName=carte_de_carr%C3%A9s.rawgraphs
+
+    //     https://file.notion.so/f/f/adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc/2d5d9e69-f1a5-46f6-b540-89535eef68ef/carte_de_carrs.rawgraphs?id=85d1150e-fc69-4d29-8a37-acba7bb9f0fc&table=block&spaceId=adba2cb3-b809-41d0-b7a2-c0e7bfb7edbc&expirationTimestamp=1708034400000&signature=PLcAGOyinaRuyCOtAgEefPMiPPFajNObzw-P9IjxqRc
+    // see also https://github.com/dragonman225/nast/blob/b1ab22c9ba1d0bf5d38e3d5b791d60c83f6a6c46/packages/nast-util-from-notionapi/src/util.ts#L205
     const srcSplit = src.split("/")
+    const localUrl=srcSplit[3]+"_"+srcSplit[srcSplit.length-1];
+    console.log('\x1b[31m secure file NOT SUPPORTED   >',src,'>>', localUrl,` \x1b[0m`)
+
+    return
+    console.log(src);
+    
     
     remoteURLs.push(src)
     
-    const localUrl=srcSplit[3]+"_"+srcSplit[srcSplit.length-1];
+    
     localURIs.push(localUrl);
     
-    console.log('   >',src,'>>', localUrl)
+    // from https://github.com/dragonman225/nast/blob/b1ab22c9ba1d0bf5d38e3d5b791d60c83f6a6c46/packages/nast-util-from-notionapi/src/util.ts#L76
+    const baseUrl = `https://www.notion.so/signed/${encodeURIComponent(src)}`
 
-    const command = `curl -X GET -G "${src}" -o ${path.join(
+    const queryParams = []
+    //queryParams.push(`table=${forEntityType}&id=${forEntityId}`)
+    
+    const convertToAccessibleUrl =  `${baseUrl}?${queryParams.join("&")}`
+
+    
+
+    const command = `curl -X GET -G "${convertToAccessibleUrl}" -o ${path.join(
       outAssetFolder,
       localUrl
     )}`
