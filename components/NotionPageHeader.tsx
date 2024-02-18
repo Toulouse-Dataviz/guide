@@ -85,6 +85,7 @@ export const NotionPageHeader: React.FC<{
                   </components.PageLink>
                 )
               } else {
+                // do not open link in addition tab for navbar links
                 return (
                   <components.Link
                     href={link.url}
