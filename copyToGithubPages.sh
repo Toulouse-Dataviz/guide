@@ -1,13 +1,13 @@
 #!/bin/bash
 # dedicated to githubpages, to not fiddle with _next Vercel
 
-srcDir=docs
-destDir=docs
+srcDir=docs/beta
+destDir=docs/beta
 
 if [ "$1" == "--prod" ]
 then
     # local folder where github page repo is
-    destDir=/userdata/dev/tdv_site/toulousedataviz.github.io/guide
+    destDir=docs
 fi
 mkdir -p $destDir
 

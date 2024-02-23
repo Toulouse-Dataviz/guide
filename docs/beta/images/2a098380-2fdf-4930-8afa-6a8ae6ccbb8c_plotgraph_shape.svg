@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="360" height="284" version="1.1" viewBox="0 0 360 284" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <clipPath id="clipPath50">
+   <path transform="translate(-33.251 -357.87)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+  <clipPath id="clipPath50-3">
+   <path transform="translate(-33.251 -357.87)" d="m0 540h270v-540h-270z"/>
+  </clipPath>
+ </defs>
+ <g fill="#595959" font-family="sans-serif" font-size="17.125px" letter-spacing="0px" stroke="#595959" word-spacing="0px">
+  <text transform="scale(1.1066 .90369)" x="60.987843" y="228.45204" stroke-width=".9" style="line-height:1.25" xml:space="preserve"><tspan x="60.987843" y="228.45204" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+  <text transform="matrix(1.1495 0 0 1.321 -21.576 -102.17)" x="90.964798" y="242.66528" stroke-width=".73033" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+  <text transform="matrix(1.1495 0 0 1.321 49.252 -150)" x="90.964798" y="242.66528" stroke-width=".73033" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+  <g stroke-width=".9">
+   <text transform="scale(1.1066 .90369)" x="95.591141" y="208.20796" style="line-height:1.25" xml:space="preserve"><tspan x="95.591141" y="208.20796" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+   <text transform="scale(1.1066 .90369)" x="112.46522" y="216.76805" style="line-height:1.25" xml:space="preserve"><tspan x="112.46522" y="216.76805" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+   <text transform="scale(1.1066 .90369)" x="132.16486" y="199.82176" style="line-height:1.25" xml:space="preserve"><tspan x="132.16486" y="199.82176" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+   <text transform="scale(1.1066 .90369)" x="184.51744" y="148.13242" style="line-height:1.25" xml:space="preserve"><tspan x="184.51744" y="148.13242" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+   <text transform="scale(1.1066 .90369)" x="209.70639" y="87.090462" style="line-height:1.25" xml:space="preserve"><tspan x="209.70639" y="87.090462" fill="#595959" stroke="#595959" stroke-width=".9">x</tspan></text>
+  </g>
+  <g stroke-width=".73033">
+   <text transform="matrix(1.1495 0 0 1.321 88.988 -159.89)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+   <text transform="matrix(1.1495 0 0 1.321 62.233 -171.88)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+   <text transform="matrix(1.1495 0 0 1.321 106.62 -195.93)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+   <text transform="matrix(1.1495 0 0 1.321 139.53 -244.53)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+   <text transform="matrix(1.1495 0 0 1.321 162.22 -235.24)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+   <text transform="matrix(1.1495 0 0 1.321 179.15 -243.15)" x="90.964798" y="242.66528" style="inline-size:9.92443;line-height:1.25;white-space:pre" xml:space="preserve"><tspan x="90.964798" y="242.66528">+</tspan></text>
+  </g>
+ </g>
+ <path transform="matrix(1.5559 0 0 -1.3333 27.73 244.81)" d="m0 0h189.5" clip-path="url(#clipPath50)" fill="none" stroke="#808080"/>
+ <path transform="matrix(0 -1.2417 -1.3333 0 40.445 260.19)" d="m0 0h189.5" clip-path="url(#clipPath50-3)" fill="none" stroke="#808080"/>
+</svg>
