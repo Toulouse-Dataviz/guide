@@ -23,6 +23,7 @@
     "export:copy_to_githubpages_prod":"echo 'make sure to run export:optimize_images before!' && ./copyToGithubPages.sh --prod",
     "export:full":"npm run export:clean && npm run build && npm run export && npm run export:download_assets && npm run export:optimize_images && npm run export:copy_to_githubpages",
     "export:full:beta":"NODE_ENV=beta node run export:full",
+    "export:full:beta:no-image-optimisation":"NODE_ENV=beta npm run export:clean && npm run build && npm run export && npm run export:copy_to_githubpages",
     "export:full:prod":"NODE_ENV=production node run export:full",
     "deploy": "vercel deploy",
     "deps": "run-s deps:*",
