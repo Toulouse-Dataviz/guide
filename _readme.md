@@ -18,7 +18,8 @@ MIT © [Travis Fischer](https://transitivebullsh.it)
 4. Installer Node.js (we recommend >= 16).
 5. Cloner ce repo
 6. Aller sur la branche "pf"
-7. Lancer le build en beta et tester en local `npm run export:full:beta` - le site est dispo sur docs/beta
-8. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://github.com/Toulouse-Dataviz/guide/beta
-9. Lancer le build et tester en local `npm run export:full:prod` - le site est dispo sur docs
-10. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://github.com/Toulouse-Dataviz/guide
+7. Lancer un `npm install` 
+8. Lancer le build en beta et tester en local `npm run export:full:beta` - le site est disponible sur docs/beta
+9. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://github.com/Toulouse-Dataviz/guide/beta
+10. Lancer le build et tester en local `npm run export:full:prod` - le site est dispo sur docs
+11. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://github.com/Toulouse-Dataviz/guide

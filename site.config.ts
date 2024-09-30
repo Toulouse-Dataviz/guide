@@ -4,7 +4,7 @@ export default siteConfig({
   // the site's root Notion page (required)
   /** IMPORTANT: Do not forget to go "Share"/"Publish" and activate the site during export! */
   rootNotionPageId:
-    'toulouse-dataviz.notion.site/3ae40501bf7547368428bcec177e6328?v=117abe6706ef4ece846d8266217ea8ac&pvs=4',
+    'toulouse-dataviz.notion.site/4cea244c76d0407b9722d300e798a3c2?v=f3b7a520de214623a766a5b68456097b&pvs=4',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
@@ -14,7 +14,7 @@ export default siteConfig({
   domain: 'notion2site.vercel.app',
   author: 'TDV',
   copyright: 'TDV - Next.js Notion Starter Kit',
-  version: "fév 2024",
+  version: "oct 2024",
 
   // open graph metadata (optional)
   description: 'Guidelines Pierre Fabre de Toulouse DataViz',
