@@ -18,7 +18,7 @@
     "export:serve":"npx http-server ./ &",
     "export:serve:stop":"kill $(lsof -t -i:8080)",
     "export:clean":"rm -rf ./docs/beta",
-    "export:clean:prod":"rm -f ./docs/* || true && rm -rf ./docs/_next && rm -rf ./docs/fonts && rm -rf ./docs/images",
+    "export:clean:prod":"rm -f ./docs/* || true && rm -rf ./docs/_next && rm -rf ./docs/fonts && rm -rf ./docs/images && echo guide.toulouse-dataviz.fr>CNAME",
     "export:download_assets":"npm run export:serve && node ./fetchAssets.js ./docs/beta http://127.0.0.1:8080 && npm run export:serve:stop",
     "export:optimize_images":"echo 'make sure to run export:download_assets before!' && ./checkImages.sh ./docs/beta -c",
     "export:copy_to_githubpages":"echo 'make sure to run export:optimize_images before!' && ./copyToGithubPages.sh",
