@@ -15,6 +15,9 @@ let assetPrefix = ''
 // FIXME:
 //let basePath = process.env.NEXT_BASEPATH ?? '/beta' // production
 let basePath = '/beta'
+if (process.env.NODE_ENV === "production") {
+  basePath = '';
+}
 
 
 // see https://www.viget.com/articles/host-build-and-deploy-next-js-projects-on-github-pages/#configure-paths

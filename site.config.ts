@@ -14,7 +14,7 @@ export default siteConfig({
   domain: 'notion2site.vercel.app',
   author: 'TDV',
   copyright: 'TDV - Next.js Notion Starter Kit',
-  version: "oct 2024",
+  version: "octobre 2024",
 
   // open graph metadata (optional)
   description: 'Guidelines Pierre Fabre de Toulouse DataViz',

@@ -7,6 +7,7 @@ destDir=docs/beta
 if [ "$1" == "--prod" ]
 then
     # local folder where github page repo is
+    srcDir=docs
     destDir=docs
 fi
 mkdir -p $destDir
