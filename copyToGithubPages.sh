@@ -23,5 +23,5 @@ fi
 
 # for github pages 
 touch $destDir/.nojekyll
-
+cp CNAME $destDir/*
 
