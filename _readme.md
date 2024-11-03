@@ -19,7 +19,9 @@ MIT © [Travis Fischer](https://transitivebullsh.it)
 5. Cloner ce repo
 6. Aller sur la branche "pf"
 7. Lancer un `npm install` 
-8. Lancer le build en beta et tester en local `npm run export:full:beta` - le site est disponible sur docs/beta
+8. Lancer le build en beta et tester en local `npm run export:full:beta:no-image-optimisation` - le site est disponible sur docs/beta
+8. Lancer un prévision avec `npm run preview:beta`
 9. Tester le déploiement sur githubpages en poussant le code sur le repo `git fetch && git pull && git commit && git push` et en allant sur https://guide.toulouse-dataviz.fr/beta/
-10. Lancer le build et tester en local `npm run export:full:prod` - le site est dispo sur docs
-11. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://guide.toulouse-dataviz.fr
+10. Lancer le build et tester en local `npm run export:full:prod:no-image-optimisation` - le site est dispo sur docs
+11. Lancer un prévision avec `npm run preview:prod`   
+12. Tester le déploiement sur githubpages en poussant le code sur le repo et en allant sur https://guide.toulouse-dataviz.fr
